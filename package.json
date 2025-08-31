@@ -1,0 +1,81 @@
+{
+  "name": "obsidian-quickadd",
+  "title": "Obsidian QuickAdd",
+  "description": "Run Obsidian QuickAdd choices from Raycast. Reads your QuickAdd config, prompts for any named inputs, and triggers via obsidian://quickadd.",
+  "version": "0.0.1",
+  "author": "avgvstvs96",
+  "license": "MIT",
+  "icon": "assets/icon.svg",
+  "categories": ["productivity"],
+  "commands": [
+    {
+      "name": "run-quickadd",
+      "title": "Run QuickAdd Choice",
+      "subtitle": "Obsidian",
+      "description": "Pick a QuickAdd choice and run it. Optionally prefill named inputs.",
+      "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "vaultPath",
+      "type": "textfield",
+      "title": "Vault Path",
+      "placeholder": "/Users/you/Obsidian/My Vault",
+      "required": true
+    },
+    {
+      "name": "vaultName",
+      "type": "textfield",
+      "title": "Vault Name (optional)",
+      "placeholder": "My Vault"
+    },
+    {
+      "name": "useSelection",
+      "type": "checkbox",
+      "title": "Use Selected Text When Available",
+      "default": true
+    },
+    {
+      "name": "useClipboardFallback",
+      "type": "checkbox",
+      "title": "Fallback to Clipboard If No Selection",
+      "default": true
+    },
+    {
+      "name": "inputControl",
+      "type": "dropdown",
+      "title": "Input Control",
+      "default": "textarea",
+      "data": [
+        { "title": "Text Area", "value": "textarea" },
+        { "title": "Text Field", "value": "textfield" }
+      ]
+    },
+    {
+      "name": "textareaRows",
+      "type": "textfield",
+      "title": "Textarea Rows",
+      "placeholder": "3",
+      "default": "3"
+    },
+    {
+      "name": "skipFormIfPrefilledSingleField",
+      "type": "checkbox",
+      "title": "Skip Form If Single Field Prefilled",
+      "default": false
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.83.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "typescript": "^5.5.4"
+  },
+  "scripts": {
+    "dev": "ray dev",
+    "build": "ray build",
+    "lint": "echo \"No linter configured for v0.0.1\""
+  }
+}
