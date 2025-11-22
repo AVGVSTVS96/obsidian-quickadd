@@ -1,0 +1,97 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "obsidian-quickadd-capture",
+  "title": "Obsidian QuickAdd Capture",
+  "description": "Capture content to Obsidian QuickAdd without context switching.",
+  "icon": "icon.png",
+  "author": "Bassim Shahidy",
+  "categories": [
+    "Productivity",
+    "Applications"
+  ],
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "dist/daily-capture.js",
+  "commands": [
+    {
+      "name": "daily-capture",
+      "title": "Daily Capture",
+      "description": "Capture to your daily note via QuickAdd",
+      "mode": "view",
+      "preferences": [
+        {
+          "name": "choiceName",
+          "title": "QuickAdd Choice Name",
+          "description": "The exact name of the QuickAdd choice to trigger.",
+          "type": "textfield",
+          "required": true,
+          "default": "Daily Capture"
+        },
+        {
+          "name": "variableName",
+          "title": "Variable Name",
+          "description": "The named variable in your QuickAdd template (e.g., 'text' for {{VALUE:text}})",
+          "type": "textfield",
+          "required": true,
+          "default": "text"
+        },
+        {
+          "name": "vaultName",
+          "title": "Obsidian Vault Name (Optional)",
+          "description": "Specify the vault name if you have multiple vaults.",
+          "type": "textfield",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "in-progress",
+      "title": "In Progress",
+      "description": "Capture a task to your in-progress list via QuickAdd",
+      "mode": "view",
+      "preferences": [
+        {
+          "name": "choiceName",
+          "title": "QuickAdd Choice Name",
+          "description": "The exact name of the QuickAdd choice to trigger.",
+          "type": "textfield",
+          "required": true,
+          "default": "In Progress"
+        },
+        {
+          "name": "variableName",
+          "title": "Variable Name",
+          "description": "The named variable in your QuickAdd template (e.g., 'text' for {{VALUE:text}})",
+          "type": "textfield",
+          "required": true,
+          "default": "text"
+        },
+        {
+          "name": "vaultName",
+          "title": "Obsidian Vault Name (Optional)",
+          "description": "Specify the vault name if you have multiple vaults.",
+          "type": "textfield",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.103.7",
+    "@raycast/utils": "^2.2.2"
+  },
+  "devDependencies": {
+    "ultracite": "^6.3.4",
+    "@biomejs/biome": "^2.3.7",
+    "typescript": "^5.9.3",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.6"
+  },
+  "scripts": {
+    "build": "ray build --output dist",
+    "dev": "ray develop",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "lint:fix": "biome check --write ."
+  }
+}
