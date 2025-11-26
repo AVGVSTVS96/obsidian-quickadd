@@ -1,10 +1,11 @@
 import {
-  closeMainWindow,
   getPreferenceValues,
-  open,
+  popToRoot,
+  showHUD,
   showToast,
   Toast,
 } from "@raycast/api";
+import { runAppleScript } from "@raycast/utils";
 
 type Preferences = {
   choiceName: string;
@@ -35,14 +36,13 @@ export async function captureToObsidian(content: string) {
       urlString += `&vault=${encodeURIComponent(vaultName)}`;
     }
 
-    await showToast({
-      style: Toast.Style.Success,
-      title: "Captured to Obsidian",
-      message: `Choice: ${choiceName}`,
-    });
-
-    await open(urlString);
-    await closeMainWindow({ clearRootSearch: true });
+    await openQuickAddInBackground(urlString);
+    
+    // Clear navigation stack to prevent form persistence on next open
+    await popToRoot();
+    
+    // Show HUD and close window (command terminates after this)
+    await showHUD("Captured to Obsidian", { clearRootSearch: true });
   } catch (error) {
     await showToast({
       style: Toast.Style.Failure,
@@ -51,4 +51,16 @@ export async function captureToObsidian(content: string) {
         error instanceof Error ? error.message : "An unknown error occurred",
     });
   }
+}
+
+async function openQuickAddInBackground(urlString: string) {
+  await runAppleScript(
+    `
+on run argv
+  set theUrl to item 1 of argv
+  do shell script "open -g " & quoted form of theUrl
+end run
+`,
+    [urlString],
+  );
 }
