@@ -7,36 +7,23 @@
 
 /* eslint-disable @typescript-eslint/ban-types */
 
-type ExtensionPreferences = {}
+type ExtensionPreferences = {
+  /** Script Commands Folder - Path to your Raycast Script Commands folder (e.g., ~/scripts/raycast) */
+  "scriptCommandsPath": string,
+  /** Default Vault (Optional) - Default Obsidian vault name for all captures */
+  "defaultVault"?: string
+}
 
 /** Preferences accessible in all the extension's commands */
 declare type Preferences = ExtensionPreferences
 
 declare namespace Preferences {
-  /** Preferences accessible in the `daily-capture` command */
-  export type DailyCapture = ExtensionPreferences & {
-  /** QuickAdd Choice Name - The exact name of the QuickAdd choice to trigger. */
-  "choiceName": string,
-  /** Variable Name - The named variable in your QuickAdd template (e.g., 'text' for {{VALUE:text}}) */
-  "variableName": string,
-  /** Obsidian Vault Name (Optional) - Specify the vault name if you have multiple vaults. */
-  "vaultName"?: string
-}
-  /** Preferences accessible in the `in-progress` command */
-  export type InProgress = ExtensionPreferences & {
-  /** QuickAdd Choice Name - The exact name of the QuickAdd choice to trigger. */
-  "choiceName": string,
-  /** Variable Name - The named variable in your QuickAdd template (e.g., 'text' for {{VALUE:text}}) */
-  "variableName": string,
-  /** Obsidian Vault Name (Optional) - Specify the vault name if you have multiple vaults. */
-  "vaultName"?: string
-}
+  /** Preferences accessible in the `create-script-command` command */
+  export type CreateScriptCommand = ExtensionPreferences & {}
 }
 
 declare namespace Arguments {
-  /** Arguments passed to the `daily-capture` command */
-  export type DailyCapture = {}
-  /** Arguments passed to the `in-progress` command */
-  export type InProgress = {}
+  /** Arguments passed to the `create-script-command` command */
+  export type CreateScriptCommand = {}
 }
 

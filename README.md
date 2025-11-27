@@ -1,56 +1,68 @@
-# Obsidian QuickAdd Capture for Raycast
+# QuickAdd Capture for Raycast
 
-This extension allows you to quickly capture notes and tasks to Obsidian via the QuickAdd plugin, all without ever leaving your current application.
+Capture content to Obsidian via the QuickAdd plugin without context switching. Obsidian stays in the background while you capture.
 
-## Setup Instructions
+## How It Works
 
-### 1. Critical Prerequisite: Configure QuickAdd
+This extension generates [Raycast Script Commands](https://manual.raycast.com/script-commands) for each capture you create. Each capture appears directly in Raycast search - type the name, enter your text, done.
 
-For this extension to work, you **must** configure your QuickAdd choices to use **named variables**. This is a one-time setup per choice.
+## Setup
 
-1.  In Obsidian, go to `Settings` > `Community Plugins` > `QuickAdd`.
-2.  For each choice you want to use (e.g., "Daily Capture"), click the gear icon to configure it.
-3.  Find the **Capture Format** section and enable the toggle.
-4.  In the format box, ensure your template uses a named variable, like `{{VALUE:text}}`.
+### 1. Prerequisites
 
-    -   **Example**: If you want to create a task, your format should be `- [ ] {{VALUE:text}}`.
+- [QuickAdd plugin](https://github.com/chhoumann/quickadd) installed in Obsidian with at least one Capture choice
+- Your QuickAdd choice must use a **named variable** like `{{VALUE:text}}`
 
-    The name `text` is important; it must match the `variableName` preference in this Raycast extension's settings (the default is `text`).
+### 2. One-Time Raycast Setup
 
-### 2. Configure the Extension in Raycast
+Script Commands need a directory. Do this once:
 
-1.  After installing the extension, open Raycast and find one of the new commands (e.g., "Daily Capture").
-2.  Press `⌘ + ,` to open the extension preferences.
-3.  For each command, ensure the **QuickAdd Choice Name** matches the exact name of your choice in Obsidian.
-4.  (Optional) If you use multiple Obsidian vaults, enter the exact name of your target vault in the **Obsidian Vault Name** field.
+1. Create a folder for scripts: `mkdir -p ~/scripts/raycast`
+2. Open Raycast Preferences (`Cmd+,`)
+3. Go to **Extensions** tab
+4. Click **+** → **Add Script Directory**
+5. Select `~/scripts/raycast`
 
-### 3. Set Aliases (Recommended)
+### 3. Configure Extension
 
-For the fastest workflow, set short aliases for your commands.
+1. Open Raycast and run **"Create QuickAdd Capture"**
+2. It will prompt you to set the **Script Commands Folder** - enter: `~/scripts/raycast`
+3. Optionally set a **Default Vault** if you use multiple vaults
 
-1.  In Raycast, go to `Settings` > `Extensions`.
-2.  Find the "Obsidian QuickAdd Capture" extension.
-3.  Assign aliases to your commands, for example:
-    -   `dc` for "Daily Capture"
-    -   `ip` for "In Progress"
+### 4. Create Your First Capture
 
-## How to Add a New Command
+1. Run **"Create QuickAdd Capture"**
+2. Fill in the form:
+   - **Command Name**: What you'll type in Raycast (e.g., "Daily Capture")
+   - **QuickAdd Choice**: Exact name from Obsidian (case-sensitive)
+   - **Variable Name**: The variable in your template (e.g., `text` for `{{VALUE:text}}`)
+3. Done! The capture now appears in Raycast search.
 
-Because Raycast requires commands to be declared upfront, you must edit the extension's files to add a new command. This has been made as simple as possible.
+## Usage
 
-**Step 1: Duplicate a Command File**
+1. Open Raycast
+2. Type your capture name (e.g., "daily")
+3. Enter your text in the argument field
+4. Press Enter
 
--   In the extension's source code, go to the `src/commands/` directory.
--   Duplicate an existing file (e.g., `daily-capture.tsx`) and rename it for your new command (e.g., `new-idea.tsx`).
--   Open the new file and change the function name and the UI text (e.g., `title` and `placeholder`).
+Obsidian receives the content in the background - you never leave your current app.
 
-**Step 2: Declare the New Command in `package.json`**
+## Tips
 
--   Open the `package.json` file at the root of the extension.
--   Find the `"commands": [...]` array.
--   Copy the entire JSON object for an existing command and paste it as a new item in the array.
--   Update the `name` (must match the filename from Step 1), `title`, `description`, and the `default` value for the `choiceName` preference.
+- **Set aliases** in Raycast for faster access (e.g., `dc` → Daily Capture)
+- Create multiple captures for different QuickAdd choices
+- Each script is a standalone file - edit or delete them directly in `~/scripts/raycast`
 
-**Step 3: Rebuild the Extension**
+## Troubleshooting
 
--   In your terminal, run `bun run dev` to have Raycast recognize the new command.
+**Capture not appearing in Raycast?**
+- Verify you added `~/scripts/raycast` as a Script Directory in Raycast Preferences
+- Check the script exists: `ls ~/scripts/raycast`
+
+**Capture not working?**
+- Ensure QuickAdd choice name matches exactly (case-sensitive)
+- Verify the variable name matches your template
+- Check that QuickAdd is enabled in Obsidian
+
+**Extra blank line in captured content?**
+- Edit your Capture format in Obsidian and remove trailing whitespace
