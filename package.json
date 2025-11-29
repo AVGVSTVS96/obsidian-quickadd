@@ -1,6 +1,7 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "obsidian-quickadd-capture",
+  "type": "module",
   "title": "Obsidian QuickAdd Capture",
   "description": "Create Script Commands that capture to Obsidian QuickAdd without context switching.",
   "icon": "icon.png",
@@ -51,19 +52,18 @@
     "@raycast/utils": "^2.2.2"
   },
   "devDependencies": {
-    "ultracite": "^6.3.4",
-    "@biomejs/biome": "^2.3.7",
-    "typescript": "^5.9.3",
+    "@raycast/eslint-config": "^2.1.1",
+    "@types/bun": "latest",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.6",
-    "@types/bun": "latest"
+    "prettier": "^3.7.3",
+    "typescript": "^5.9.3"
   },
   "scripts": {
     "build": "ray build --output dist",
     "dev": "ray develop",
-    "lint": "biome check .",
-    "format": "biome format --write .",
-    "lint:fix": "biome check --write .",
+    "lint": "eslint src --fix",
+    "format": "prettier --write src",
     "publish": "npx @raycast/api@latest publish"
   }
 }

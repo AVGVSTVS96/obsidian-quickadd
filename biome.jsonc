@@ -1,7 +1,0 @@
-{
-  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "extends": ["ultracite/core", "ultracite/react"],
-  "files": {
-    "includes": ["src/**/*.ts", "src/**/*.tsx", "!**/*.d.ts"]
-  }
-}
