@@ -158,22 +158,21 @@ export default function CreateScriptCommand() {
       <Form.TextField
         id="title"
         info="This is what you'll type in Raycast to trigger the capture"
-        placeholder="Daily Capture"
-        title="Command Name"
+        placeholder="Name for raycast"
+        title="Script Command Name"
       />
 
       <Form.TextField
         id="choiceName"
-        info="The exact name of your QuickAdd choice in Obsidian"
-        placeholder="Daily Capture"
-        title="QuickAdd Choice"
+        info="The exact name of your QuickAdd macro in Obsidian"
+        placeholder="Name of QuickAdd Macro"
+        title="QuickAdd Macro"
       />
 
       <Form.TextField
-        defaultValue="text"
         id="variableName"
         info="The variable in your template (e.g., 'text' for {{VALUE:text}})"
-        placeholder="text"
+        placeholder="QuickAdd Variable Name"
         title="Variable Name"
       />
 
@@ -182,7 +181,7 @@ export default function CreateScriptCommand() {
       <Form.TextField
         id="placeholder"
         info="Hint text shown in the input field"
-        placeholder="What's on your mind?"
+        placeholder="Placeholder Text"
         title="Input Placeholder"
       />
 
