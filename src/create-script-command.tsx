@@ -6,6 +6,7 @@ import {
   Form,
   getPreferenceValues,
   openExtensionPreferences,
+  popToRoot,
   showHUD,
   showToast,
   Toast,
@@ -130,6 +131,7 @@ export default function CreateScriptCommand() {
       writeFileSync(filepath, content, { encoding: "utf-8" });
       chmodSync(filepath, 0o755);
       await showHUD(`✓ Created "${values.title}" - now available in Raycast`);
+      await popToRoot();
     } catch (error) {
       await showError(
         "Failed to create script",
