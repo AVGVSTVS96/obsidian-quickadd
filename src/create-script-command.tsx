@@ -51,14 +51,11 @@ function generateScriptContent(
 # Variable: ${values.variableName}
 ${vault ? `# Vault: ${vault}` : ""}
 
-CHOICE="${encodeURIComponent(values.choiceName)}"
-VARIABLE="${encodeURIComponent(values.variableName)}"
-${vault ? `VAULT="${encodeURIComponent(vault)}"` : ""}
+CHOICE=$(osascript -l JavaScript -e "encodeURIComponent('${values.choiceName}')")
+VARIABLE=$(osascript -l JavaScript -e "encodeURIComponent('${values.variableName}')")
+${vault ? `VAULT=$(osascript -l JavaScript -e "encodeURIComponent('${vault}')")` : ""}
+ENCODED=$(osascript -l JavaScript -e "encodeURIComponent('$1')")
 
-# URL encode the input
-ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$1'''))")
-
-# Open QuickAdd in background (Obsidian won't steal focus)
 open -g "obsidian://quickadd?choice=\${CHOICE}${vaultParam}&value-\${VARIABLE}=\${ENCODED}"
 `;
 }
