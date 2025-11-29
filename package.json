@@ -4,7 +4,7 @@
   "title": "Obsidian QuickAdd Capture",
   "description": "Create Script Commands that capture to Obsidian QuickAdd without context switching.",
   "icon": "icon.png",
-  "author": "avgvstvs96",
+  "author": "avgvstvs",
   "platforms": [
     "macOS"
   ],

@@ -153,7 +153,7 @@ export default function CreateScriptCommand() {
         </ActionPanel>
       }
     >
-      <Form.Description text="Creates a Script Command that appears directly in Raycast search. Type the name, enter your text, and capture instantly." />
+      <Form.Description text="Creates a Script Command that appears directly in Raycast search. Ensure Raycast script's directory is set." />
 
       <Form.TextField
         id="title"
