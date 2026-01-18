@@ -12,11 +12,6 @@ import {
   Toast,
 } from "@raycast/api";
 
-type Preferences = {
-  scriptCommandsPath: string;
-  defaultVault?: string;
-};
-
 type FormValues = {
   title: string;
   choiceName: string;
